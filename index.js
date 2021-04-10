@@ -2,8 +2,9 @@ const PatientMessage = require('./PatientMessage.js');
 const Doctor = require('./Doctor.js');
 const unirest = require('unirest');
 var API_KEY = "aad4d9f345mshbfe74e4d541f881p148a51jsn8535d35fade1";
-var gAPI_KEY="AIzaSyA9oVPsg9SzI6bil8SYkOQsGbPcj7B4t4A";
-var googleTranslate= require('google-translate')(gAPI_KEY);
+//var gAPI_KEY="AIzaSyA9oVPsg9SzI6bil8SYkOQsGbPcj7B4t4A";
+//var googleTranslate= require('google-translate')(gAPI_KEY);
+var translate= require('@iamtraction/google-translate');
 
 var replyFunction = replyMessage;
 
@@ -61,18 +62,13 @@ function onMessage(data) {
 
         var test = null;
 
-        function yes() {
-        googleTranslate.translate(serverReply, 'fr', function (err, translation) {
+
+        /*googleTranslate.translate(serverReply, 'fr', function (err, translation) {
             console.log(translation.translatedText);
-        });
-    }
-        async function t(){
-            await yes();
+        });*/
 
-        }
 
-        t();
-        console.log('test', test);
+        //console.log('test', test);
     }
     setReply();
 }
@@ -84,6 +80,12 @@ async function replyMessage(doctor, serverSocket) {
     /*googleTranslate.translate(serverReply, 'de', function(err, translation){
         serverReply= translation.translatedText;
     });*/
+    await translate(serverReply, { to: 'fr' }).then(res => {
+        console.log(res.text); // OUTPUT: You are amazing!
+        serverReply[0]= res.text;
+    }).catch(err => {
+        console.error(err);
+    });
 
     //TESTING NER
     var entities = doctor.messageNER;
