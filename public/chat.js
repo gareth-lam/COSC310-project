@@ -1,7 +1,15 @@
 // this file serves as the Client, which connects to the server
 // this script is loaded in the index.html file, which forms the interface between the Client and the Server
 // technically, this file (chat.js) and the index.html serve as the frontend of the app
-
+//var translate= require('@iamtraction/google-translate');
+/* function t(v){
+     translate(v, { to: 'fr' }).then(res => {
+        console.log(res.text); // OUTPUT: You are amazing!
+        return res.text;
+    }).catch(err => {
+        console.error(err);
+    });
+}*/
 // define Client socket and connect to the Server (at port# 4000)
 var clientSocket = io.connect('http://localhost:4000');
 //alert('Hi');     // DEBUGGING
@@ -13,9 +21,10 @@ window.onload = function(){
     var send_button = document.getElementById('send');
 
     // Adding event to send message
-    send_button.addEventListener('click', function(){
+    send_button.addEventListener('click',  function(){
+         //var a=  t(message.value);
         createChatElement('user', message.value);
-
+        //createChatElement('user', a);
         // emit method takes two parameters: event name, and data to be sent
          /* the name chat-message is user-defined and is implemented 
         as an event below so that the Client could also respond to the Server. */
@@ -75,6 +84,7 @@ function createChatElement(userType, message){
     chat_body.appendChild(chat_div); 
 
 }
+
 
 
 

@@ -2,7 +2,7 @@
 const PatientMessage = require('./PatientMessage.js');
 var gAPI_KEY="AIzaSyA9oVPsg9SzI6bil8SYkOQsGbPcj7B4t4A";
 var googleTranslate= require('google-translate')(gAPI_KEY);
-
+var translate= require('@iamtraction/google-translate');
 module.exports = class Doctor {
 
     patientMessage;
@@ -109,6 +109,7 @@ module.exports = class Doctor {
                 this.serverReply.push(this.messageSummary['answer']);
                 this.inProgress = false; // continue conversation, terminate dialogue on topic
             }
+
             this.serverReply.push("Would you like to set up an appointment?");
             this.awaitReplyAppointment = true;
             this.awaitReplyResources = false;

@@ -80,13 +80,20 @@ async function replyMessage(doctor, serverSocket) {
     /*googleTranslate.translate(serverReply, 'de', function(err, translation){
         serverReply= translation.translatedText;
     });*/
-    await translate(serverReply, { to: 'fr' }).then(res => {
+    await translate(serverReply[0], { to: 'fr' }).then(res => {
         console.log(res.text); // OUTPUT: You are amazing!
         serverReply[0]= res.text;
     }).catch(err => {
         console.error(err);
     });
-
+    if(doctor.awaitReplyResources==true || doctor.awaitReplyAppointment==true || doctor.awaitReview==true) {
+        await translate(serverReply[1], {to: 'fr'}).then(res => {
+            console.log(res.text); // OUTPUT: You are amazing!
+            serverReply[1] = res.text;
+        }).catch(err => {
+            console.error(err);
+        });
+    }
     //TESTING NER
     var entities = doctor.messageNER;
 
