@@ -2,6 +2,8 @@ const PatientMessage = require('./PatientMessage.js');
 const Doctor = require('./Doctor.js');
 const unirest = require('unirest');
 var API_KEY = "aad4d9f345mshbfe74e4d541f881p148a51jsn8535d35fade1";
+var gAPI_KEY="AIzaSyA9oVPsg9SzI6bil8SYkOQsGbPcj7B4t4A";
+var googleTranslate= require('google-translate')(gAPI_KEY);
 
 var replyFunction = replyMessage;
 
@@ -47,7 +49,7 @@ function onMessage(data) {
             let recipeInfo = await findRecipe();
             doctor.setRecipeInfo(recipeInfo);
 
-            let wineInfo=await findWineRecommendations();
+            let wineInfo = await findWineRecommendations();
             doctor.setWineInfo(wineInfo);
 
         }
@@ -56,6 +58,21 @@ function onMessage(data) {
         // serverSocket.emit('chat-message', serverReply);
         console.log('Client message: ', data.message);
         console.log('Server reply: ', serverReply);
+
+        var test = null;
+
+        function yes() {
+        googleTranslate.translate(serverReply, 'fr', function (err, translation) {
+            console.log(translation.translatedText);
+        });
+    }
+        async function t(){
+            await yes();
+
+        }
+
+        t();
+        console.log('test', test);
     }
     setReply();
 }
@@ -64,6 +81,9 @@ function onMessage(data) {
 async function replyMessage(doctor, serverSocket) {
 
     serverReply = doctor.getReply();
+    /*googleTranslate.translate(serverReply, 'de', function(err, translation){
+        serverReply= translation.translatedText;
+    });*/
 
     //TESTING NER
     var entities = doctor.messageNER;

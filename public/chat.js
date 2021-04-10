@@ -32,6 +32,8 @@ window.onload = function(){
         //alert('server message: ', data.message);      // DEBUGGING
     });
 
+
+
 }
 
 // function to create user/bot chat elements and display them
@@ -64,6 +66,7 @@ function createChatElement(userType, message){
         img_div.appendChild(profile_image);    
         message_element.classList.add('chat-message');
     }
+
 
     // displaying user's message
     message_element.innerHTML = message;

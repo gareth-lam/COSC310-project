@@ -1,6 +1,7 @@
 // A class to process client message
 const PatientMessage = require('./PatientMessage.js');
-
+var gAPI_KEY="AIzaSyA9oVPsg9SzI6bil8SYkOQsGbPcj7B4t4A";
+var googleTranslate= require('google-translate')(gAPI_KEY);
 
 module.exports = class Doctor {
 
@@ -28,6 +29,9 @@ module.exports = class Doctor {
     }
 
     async setMessage(patientMessage) {
+       /* googleTranslate.translate(patientMessage, 'fr', function(err, translation){
+        this.patientMessage= translation.translatedText;
+    });*/
         this.patientMessage = patientMessage;
         await this.setMessageAttributes();
     }
