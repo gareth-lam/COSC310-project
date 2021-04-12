@@ -112,7 +112,13 @@ module.exports = class Doctor {
         } else if (this.awaitReplyAppointment) {
             if (this.getIntent() == "user.yes") {
                 //TODO: SETTING UP APPOINTMENT WITH NER
-                this.serverReply.push("Appointment set up!");
+                this.serverReply.push("Appointment set up! My office is located here:");
+                this.serverReply.push("<img src='https://maps.googleapis.com/maps/api/staticmap?size=512x512&" +
+                    "zoom=12&center=Chicago&format=png&style=feature:road.highway%7Celement:geometry%7Cvisibility:" +
+                    "simplified%7Ccolor:0xc280e9&style=feature:transit.line%7Cvisibility:simplified%7Ccolor:0xbababa&" +
+                    "style=feature:road.highway%7Celement:labels.text.stroke%7Cvisibility:on%7Ccolor:0xb06eba&style=fea" +
+                    "ture:road.highway%7Celement:labels.text.fill%7Cvisibility:on%7Ccolor:0xffffff&" +
+                    "key='>");
             } else if (this.getIntent() == "user.no") {
                 this.serverReply.push("Ok");
             } else {
