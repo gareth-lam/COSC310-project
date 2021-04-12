@@ -112,13 +112,15 @@ module.exports = class Doctor {
         } else if (this.awaitReplyAppointment) {
             if (this.getIntent() == "user.yes") {
                 //TODO: SETTING UP APPOINTMENT WITH NER
-                this.serverReply.push("Appointment set up! My office is located here:");
-                this.serverReply.push("<img src='https://maps.googleapis.com/maps/api/staticmap?size=512x512&" +
-                    "zoom=12&center=Chicago&format=png&style=feature:road.highway%7Celement:geometry%7Cvisibility:" +
-                    "simplified%7Ccolor:0xc280e9&style=feature:transit.line%7Cvisibility:simplified%7Ccolor:0xbababa&" +
-                    "style=feature:road.highway%7Celement:labels.text.stroke%7Cvisibility:on%7Ccolor:0xb06eba&style=fea" +
-                    "ture:road.highway%7Celement:labels.text.fill%7Cvisibility:on%7Ccolor:0xffffff&" +
-                    "key='>");
+                this.serverReply.push("Appointment set up! My office is located at 73, Simcoe Street, Toronto, ON:");
+                /*this.serverReply.push("<img src='https://maps.googleapis.com/maps/api/staticmap?center=Old+Toronto&" +
+                                        "zoom=10&size=300x300&maptype=roadmap" +
+                                        "&markers=color:red%7Clabel:H%43.64736,-79.38573" +
+                                        "&key='>");*/
+                this.serverReply.push("<img src='https://maps.googleapis.com/maps/api/staticmap?center=old+toronto" +
+                    "&zoom=14&size=300x300&maptype=roadmap" +
+                    "&markers=color:red%7Clabel:H%7C43.64736,-79.38573" +
+                    "&key=AIzaSyB-GzjzOrzatS8ehFg7T9FkmTDKmT-7dUw'>");
             } else if (this.getIntent() == "user.no") {
                 this.serverReply.push("Ok");
             } else {
