@@ -4,6 +4,12 @@ Meet **Dr. Hannibal Lecter**, the online Psychiatrist Bot.
 The bot is loosely based on the titular main antagonist of the Hannibal book series by Thomas Harris and their film and television series adaptions.
 Hannibal is an extremely brilliant psychiatrist, but also a mentally disturbed and cannibalistic serial killer infamous for eating his victims.
 
+## Individual Project Update
+- updated API list to reflect new implmented apis. Added google translate and static map api, see below for full list.
+- The new apis have been implemented into their respective branches.
+- API keys have been removed for security reasons. In order to run the bot, acuire google cloud api for translate and stat map.
+- instructions for running bot have not changed, see below.
+
 ## Overview
 - The app employs sockets to enable communication between Client (user) and the Server (Bot).
 - The Client and the Server files were coded using the **socket.io** library.
@@ -32,4 +38,5 @@ Hannibal is an extremely brilliant psychiatrist, but also a mentally disturbed a
 - **ner-promise** api & **Stanford NER** library - Named Entity Recognition
 - **vader-sentiment package** - sentiment analysis
 - **unirest** & **Spoonacular** API - accessing the database of Recipes & Wine recommendations
-
+- **google translate** API - translating server/bot reply before sending message back to user
+- **static map** API - display static map with hannibal lecter's office marked
